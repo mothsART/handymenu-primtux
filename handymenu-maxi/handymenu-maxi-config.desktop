@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=HandyMenu-maxi-config
+Comment=Edition du handymenu-maxi
+Comment[fr]=Cycle 3
+Exec=gksudo /usr/local/bin/primtux/handymenu-maxi-config
+Icon=handy-maxi-config
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Education;

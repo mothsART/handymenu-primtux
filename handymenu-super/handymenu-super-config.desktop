@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=HandyMenu-super-config
+Comment=Edition du handymenu-super
+Comment[fr]=Cycle 2
+Exec=gksudo /usr/local/bin/primtux/handymenu-super-config
+Icon=handy-super-config
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Education;

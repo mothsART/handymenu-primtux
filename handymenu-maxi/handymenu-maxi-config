@@ -1,0 +1,4 @@
+#!/bin/bash
+
+python /usr/share/handymenu-maxi/handymenu-configuration.py 
+

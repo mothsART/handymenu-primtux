@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=HandyMenu-super
+Comment=Minimalist menu for HandyLinux
+Comment[fr]=CP-CE1
+Comment[es]=Menú simplificado para HandyLinux
+Comment[eo]=Simpligita menuo por HandyLinux
+Exec=/usr/local/bin/primtux/handymenu-super
+Icon=handy-super
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Education;

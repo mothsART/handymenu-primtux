@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=HandyMenu-maxi
+Comment=Minimalist menu for HandyLinux
+Comment[fr]=CE2-CM1-CM2
+Comment[es]=Menú simplificado para HandyLinux
+Comment[eo]=Simpligita menuo por HandyLinux
+Exec=/usr/local/bin/primtux/handymenu-maxi
+Icon=handy-maxi
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Education;

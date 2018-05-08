@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=HandyMenu-mini-config
+Comment=Edition du handymenu-mini
+Comment[fr]=Maternelle
+Exec=gksudo /usr/local/bin/primtux/handymenu-mini-config
+Icon=handy-mini-config
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Education;
