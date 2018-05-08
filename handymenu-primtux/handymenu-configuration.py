@@ -109,7 +109,7 @@ class HandymenuConfig():
     def mod_app_icon_dialog(self, widget, event, dialog, section, app):
         chooser = gtk.FileChooserDialog(title=_("Choose an icon"),action=gtk.FILE_CHOOSER_ACTION_OPEN,\
                 buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
-        chooser.set_current_folder(os.getcwd())
+        chooser.set_current_folder(pixmaps)
         filter = gtk.FileFilter()
         filter.set_name(_("Images"))
         filter.add_mime_type("image/png")
