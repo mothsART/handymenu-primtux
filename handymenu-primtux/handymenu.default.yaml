@@ -1,0 +1,156 @@
+- apps:
+  - cmd: dicorime
+    generic: Dictionnaire
+    icon: dicorime
+    name: Dictionnaire
+  - cmd: goldendict
+    generic: Multi-Dictionnaire
+    icon: goldendict
+    name: Multi-Dictionnaire
+  - cmd: /usr/bin/leconjugueur
+    generic: Conjugaison
+    icon: Le_Conjugueur2
+    name: Conjugaison
+  - cmd: libreoffice
+    generic: LibreOffice
+    icon: libreoffice-startcenter
+    name: LibreOffice
+  - cmd: libreoffice --writer
+    generic: !!python/str 'Écrire'
+    icon: libreoffice-writer
+    name: !!python/str 'Écrire'
+  - cmd: libreoffice --calc
+    generic: Tableaux
+    icon: libreoffice-calc
+    name: Tableaux
+  - cmd: libreoffice --draw
+    generic: Composition
+    icon: libreoffice-draw
+    name: Composition
+  - cmd: libreoffice --impress
+    generic: Diaporamas
+    icon: libreoffice-impress
+    name: Diaporamas
+  - cmd: libreoffice --math
+    generic: Math
+    icon: libreoffice-math
+    name: Math
+  - cmd: libreoffice --base
+    generic: LibreOffice Base
+    icon: libreoffice-base
+    name: LibreOffice Base
+  - cmd: osmo
+    generic: Agenda Personnel
+    icon: osmo
+    name: Agenda
+  - cmd: xournal
+    generic: Prise de notes manuscrites
+    icon: xournal
+    name: Journal
+  - cmd: qalculate-gtk
+    generic: Calculatrice
+    icon: qalculate
+    name: Calculatrice
+  - cmd: tbo
+    generic: TBO
+    icon: tbo
+    name: TBO
+  id: 9
+  name: !!python/str 'Écriture'
+- apps:
+  - cmd: audacity
+    generic: Audacity
+    icon: audacity
+    name: Audacity
+  - cmd: soundconverter
+    generic: Convertisseur audio
+    icon: soundconverter
+    name: Convertisseur audio
+  - cmd: vlc
+    generic: VLC
+    icon: vlc
+    name: VLC
+  - cmd: openshot
+    generic: !!python/str 'Éditeur vidéo'
+    icon: openshot
+    name: !!python/str 'Éditeur vidéo'
+  - cmd: xfburn
+    generic: Gravure
+    icon: media-cdrom
+    name: Gravure
+  id: 0
+  name: !!python/str 'Audio-Vidéo'
+- apps:
+  - cmd: xsane
+    generic: Scanner
+    icon: xsane
+    name: Scanner
+  - cmd: shutter
+    generic: !!python/str 'Capture d''écran'
+    icon: shutter
+    name: !!python/str 'Capture d''écran'
+  - cmd: gimp
+    generic: !!python/str 'Éditeur d''images'
+    icon: gimp
+    name: Gimp
+  - cmd: pinta
+    generic: !!python/str 'Éditeur d''images'
+    icon: pinta
+    name: Pinta
+  id: 1
+  name: Images
+- apps:
+  - cmd: arandr
+    generic: !!python/str 'Écrans'
+    icon: display
+    name: !!python/str 'Écrans'
+  - cmd: system-config-printer
+    generic: Impression
+    icon: printer
+    name: Impression
+  - cmd: /usr/bin/menulibre
+    generic: !!python/str 'Éditeur de menu'
+    icon: menulibre
+    name: !!python/str 'Éditeur de menu'
+  - cmd: roxterm
+    generic: Terminal
+    icon: utilities-terminal
+    name: Terminal
+  - cmd: gparted-pkexec
+    generic: !!python/str 'Éditeur de partitions'
+    icon: gparted
+    name: !!python/str 'Éditeur de partitions'
+  - cmd: fskbsetting
+    generic: Clavier
+    icon: preferences-desktop-keyboard
+    name: Clavier
+  - cmd: lxappearance
+    generic: Apparence
+    icon: preferences-desktop-theme
+    name: Apparence
+  - cmd: gksudo solydxk-softwaremanager
+    generic: Gestionnaire de logiciels
+    icon: solydxk-softwaremanager
+    name: Logiciels
+  - cmd: /usr/local/bin/primtux/synupdate
+    generic: Gestionnaire de paquets
+    icon: synaptic
+    name: Synaptic
+  - cmd: gksudo /usr/local/bin/primtux/non-free/check
+    generic: !!python/str 'Logiciels supplémentaires'
+    icon: freeware-64
+    name: Freeware-Nc
+  - cmd: gksu system-config-samba
+    generic: Partager des fichiers
+    icon: system-config-samba
+    name: Samba
+  - cmd: gigolo
+    generic: Visionneur de fichiers distants
+    icon: gtk-network
+    name: Gigolo
+  - cmd: /usr/local/Open-Sankore-2.5.1/run.sh
+    generic: Open-Sankore
+    icon: sankore
+    name: Open-Sankore
+  id: 5
+  name: !!python/str 'Système'

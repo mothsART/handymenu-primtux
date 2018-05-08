@@ -1,0 +1,244 @@
+- apps:
+  - cmd: firefox
+    generic: Firefox
+    icon: firefox
+    name: Internet
+  - cmd: /usr/bin/pcmanfm /home/02-super/Documents
+    generic: Pcmanfm
+    icon: pcmanfm
+    name: Fichiers
+  - cmd: libreoffice --writer
+    generic: Ecrire
+    icon: libreoffice-writer
+    name: !!python/str 'Écrire'
+  - cmd: /usr/bin/shutdown
+    generic: !!python/str 'Arrêter'
+    icon: system-shutdown
+    name: !!python/str 'Arrêter'
+  id: 6
+  name: Accueil
+- apps:
+  - cmd: dicorime
+    generic: Dictionnaire
+    icon: dicorime
+    name: Dictionnaire
+  - cmd: goldendict
+    generic: Multi-Dictionnaire
+    icon: goldendict
+    name: Multi-Dictionnaire
+  - cmd: libreoffice --writer
+    generic: !!python/str 'Écrire'
+    icon: libreoffice-writer
+    name: !!python/str 'Écrire'
+  - cmd: aller-super
+    generic: AbulEdu Aller
+    icon: abuledu-aller
+    name: AbulEdu Aller
+  - cmd: /usr/bin/associations-super
+    generic: AbulEdu - Associations
+    icon: abuledu-associations
+    name: AbulEdu - Associations
+  - cmd: leterrier-imageo
+    generic: AbulEdu Imageo
+    icon: abuledu-imageo
+    name: AbulEdu Imageo
+  - cmd: tbo
+    generic: TBO
+    icon: tbo
+    name: TBO
+  id: 9
+  name: !!python/str 'Français'
+- apps:
+  - cmd: anous-super
+    generic: AbulEdu A nous les nombres
+    icon: abuledu-anouslesnombres
+    name: A nous les nombres
+  - cmd: leterrier-calcul-mental
+    generic: Abuledu Calcul-Mental
+    icon: abuledu-calculs
+    name: Calcul-Mental
+  - cmd: mathoeuf-super
+    generic: AbulEdu Calcul Reflechi
+    icon: abuledu-calculreflechi
+    name: Calcul Reflechi
+  - cmd: calculs-super
+    generic: AbulEdu Calculs
+    icon: abuledu-calculs
+    name: Calculs
+  - cmd: operations-super
+    generic: Abuledu Operations
+    icon: abuledu-operations
+    name: Operations
+  - cmd: leterrier-suitearithmetique
+    generic: AbulEdu SuiteArithmetique
+    icon: leterrier-suitearithmetique
+    name: SuiteArithmetique
+  - cmd: contour-super
+    generic: AbulEdu A nous les nombres
+    icon: abuledu-contourjeu
+    name: AbulEdu Contour
+  - cmd: suites-super
+    generic: AbulEdu Suites
+    icon: abuledu-suites
+    name: AbulEdu Suites
+  id: 1
+  name: Calcul
+- apps:
+  - cmd: leterrier-tierce
+    generic: AbulEdu Tierce
+    icon: /usr/share/icons/Faenza/apps/48/gnome-sudoku.png
+    name: AbulEdu Tierce
+  - cmd: qalculate-gtk
+    generic: Calculatrice
+    icon: accessories-calculator
+    name: Calculatrice
+  - cmd: leterrier-calculette-capricieuse
+    generic: Calculette capricieuse
+    icon: leterrier-calccap
+    name: Calculette capricieuse
+  - cmd: /usr/bin/freemaths
+    generic: FreeMaths
+    icon: /usr/share/icons/Faenza/apps/48/gnome-tetravex.png
+    name: FreeMaths
+  - cmd: leterrier-fubuki
+    generic: Fubuki
+    icon: leterrier-fubuki
+    name: Fubuki
+  - cmd: leterrier-cibler
+    generic: Le Terrier Cible
+    icon: leterrier-cibler
+    name: Le Terrier Cible
+  - cmd: problemes-super
+    generic: !!python/str 'Problèmes'
+    icon: problemes
+    name: !!python/str 'Problèmes'
+  - cmd: tuxmath
+    generic: Tux Math
+    icon: tuxmath
+    name: Tux Math
+  - cmd: multiplication-station
+    generic: Multiplication Station
+    icon: multiplicationstation-0.8.0
+    name: Multiplication
+  id: 7
+  name: Calcul 2
+- apps:
+  - cmd: chemin-super
+    generic: AbulEdu Chemin
+    icon: abuledu-chemin
+    name: AbulEdu Chemin
+  - cmd: symcolor-super
+    generic: AbulEdu Symcolor
+    icon: abuledu-symcolor
+    name: AbulEdu Symcolor
+  - cmd: gtans
+    generic: Tangrams
+    icon: gtans
+    name: Tangrams
+  - cmd: /usr/share/Omega/labyrinthe-linux/Labyrinthe
+    generic: Labyrinthe
+    icon: labytux
+    name: Labyrinthe
+  - cmd: /usr/share/Omega/labyrinthe-cache-linux/Labyrinthe-cache
+    generic: !!python/str 'Labyrinthe caché'
+    icon: laby-cache
+    name: !!python/str 'Labyrinthe caché'
+  - cmd: /usr/share/Omega/comparaison-linux/comparaison
+    generic: Comparaison
+    icon: comparaison
+    name: Comparaison
+  - cmd: /usr/share/Omega/piles-linux/piles
+    generic: Piles
+    icon: /usr/share/icons/Faenza/actions/48/document-properties.png
+    name: Piles
+  - cmd: drgeo
+    generic: DrGeo
+    icon: drgeo
+    name: DrGEo
+  id: 4
+  name: !!python/str 'Géométrie'
+- apps:
+  - cmd: childsplay --language=fr
+    generic: Childsplay
+    icon: childsplay
+    name: Childsplay
+  - cmd: gcompris
+    generic: !!python/str 'Suite éducative GCompris'
+    icon: gcompris
+    name: GCompris
+  - cmd: /usr/bin/omnitux
+    generic: Omnitux
+    icon: omnitux
+    name: Omnitux
+  - cmd: /usr/bin/pysiogame
+    generic: pySioGame
+    icon: pysiogame
+    name: pySioGame
+  id: 3
+  name: Compilations
+- apps:
+  - cmd: firefox
+    generic: Firefox
+    icon: firefox
+    name: Internet
+  - cmd: scratch %f
+    generic: Scratch
+    icon: scratch
+    name: Scratch
+  - cmd: stellarium
+    generic: Stellarium
+    icon: stellarium
+    name: Stellarium
+  - cmd: /usr/bin/micro
+    generic: Microscope virtuel
+    icon: microscope
+    name: Microscope virtuel
+  id: 8
+  name: !!python/str 'Déc. du Monde'
+- apps:
+  - cmd: hannah
+    generic: Help Hannah's Horse
+    icon: hannah
+    name: Help Hannah's Horse
+  - cmd: ktuberling
+    generic: Monsieur Patate
+    icon: ktuberling
+    name: Monsieur Patate
+  - cmd: monsterz
+    generic: Monsterz
+    icon: monsterz
+    name: Monsterz
+  - cmd: ri-li
+    generic: Ri-li
+    icon: ri-li
+    name: Ri-li
+  - cmd: seahorse-adventures
+    generic: Seahorse Adventures
+    icon: seahorse-adventures
+    name: Seahorse Adventures
+  - cmd: supertux
+    generic: SuperTux
+    icon: supertux
+    name: SuperTux
+  - cmd: mulot-super
+    generic: AbulEdu Mulot
+    icon: abuledu-mulot
+    name: AbulEdu Mulot
+  - cmd: /usr/bin/jnavigue.sh
+    generic: Jnavigue
+    icon: logoJnavigue
+    name: Jnavigue
+  - cmd: klettres
+    generic: KLettres
+    icon: klettres
+    name: KLettres
+  - cmd: pysycache
+    generic: PySyCache
+    icon: pysycache
+    name: PySyCache
+  - cmd: tuxpaint
+    generic: Tux Paint
+    icon: tuxpaint
+    name: Tux Paint
+  id: 5
+  name: Jeux

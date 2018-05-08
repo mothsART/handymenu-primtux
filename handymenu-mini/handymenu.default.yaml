@@ -1,0 +1,102 @@
+- apps:
+  - cmd: libreoffice --writer
+    generic: Ecrire
+    icon: libreoffice-writer
+    name: !!python/str 'Écrire'
+  - cmd: anous-mini
+    generic: AbulEdu A nous les nombres
+    icon: abuledu-anouslesnombres
+    name: A nous les nombres
+  - cmd: contour-mini
+    generic: AbulEdu A nous les nombres
+    icon: abuledu-contourjeu
+    name: AbulEdu Contour
+  - cmd: suites-mini
+    generic: AbulEdu Suites
+    icon: abuledu-suites
+    name: AbulEdu Suites
+  - cmd: chemin-mini
+    generic: AbulEdu Chemin
+    icon: abuledu-chemin
+    name: AbulEdu Chemin
+  - cmd: symcolor-mini
+    generic: AbulEdu Symcolor
+    icon: abuledu-symcolor
+    name: AbulEdu Symcolor
+  - cmd: gtans
+    generic: Tangrams
+    icon: gtans
+    name: Tangrams
+  - cmd: /usr/share/Omega/labyrinthe-linux/Labyrinthe
+    generic: Labyrinthe
+    icon: labytux
+    name: Labyrinthe
+  - cmd: /usr/share/Omega/labyrinthe-cache-linux/Labyrinthe-cache
+    generic: !!python/str 'Labyrinthe caché'
+    icon: laby-cache
+    name: !!python/str 'Labyrinthe caché'
+  - cmd: /usr/share/Omega/comparaison-linux/comparaison
+    generic: Comparaison
+    icon: comparaison
+    name: Comparaison
+  - cmd: /usr/share/Omega/piles-linux/piles
+    generic: Piles
+    icon: /usr/share/icons/Faenza/actions/48/document-properties.png
+    name: Piles
+  id: 9
+  name: !!python/str 'Français-Maths'
+- apps:
+  - cmd: mulot-mini
+    generic: AbulEdu Mulot
+    icon: abuledu-mulot
+    name: AbulEdu Mulot
+  - cmd: klettres
+    generic: KLettres
+    icon: klettres
+    name: KLettres
+  - cmd: pysycache
+    generic: PySyCache
+    icon: pysycache
+    name: PySyCache
+  - cmd: tuxpaint
+    generic: Tux Paint
+    icon: tuxpaint
+    name: Tux Paint
+  - cmd: childsplay --language=fr
+    generic: Childsplay
+    icon: childsplay
+    name: Childsplay
+  - cmd: gcompris
+    generic: !!python/str 'Suite éducative GCompris'
+    icon: gcompris
+    name: GCompris
+  - cmd: /usr/bin/omnitux
+    generic: Omnitux
+    icon: omnitux
+    name: Omnitux
+  - cmd: hannah
+    generic: Help Hannah's Horse
+    icon: hannah
+    name: Help Hannah's Horse
+  - cmd: ktuberling
+    generic: Monsieur Patate
+    icon: ktuberling
+    name: Monsieur Patate
+  - cmd: ri-li
+    generic: Ri-li
+    icon: ri-li
+    name: Ri-li
+  - cmd: supertux
+    generic: SuperTux
+    icon: supertux
+    name: SuperTux
+  - cmd: firefox
+    generic: Firefox
+    icon: firefox
+    name: Internet
+  - cmd: /usr/bin/shutdown
+    generic: !!python/str 'Arrêter'
+    icon: system-shutdown
+    name: !!python/str 'Arrêter'
+  id: 7
+  name: Compilations-Jeux

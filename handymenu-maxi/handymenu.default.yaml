@@ -1,0 +1,216 @@
+- apps:
+  - cmd: firefox
+    generic: Firefox
+    icon: firefox
+    name: Internet
+  - cmd: /usr/bin/pcmanfm /home/03-maxi/Documents
+    generic: Pcmanfm
+    icon: pcmanfm
+    name: Fichiers
+  - cmd: libreoffice --writer
+    generic: Ecrire
+    icon: libreoffice-writer
+    name: !!python/str 'Écrire'
+  - cmd: /usr/bin/shutdown
+    generic: !!python/str 'Arrêter'
+    icon: system-shutdown
+    name: !!python/str 'Arrêter'
+  id: 6
+  name: Accueil
+- apps:
+  - cmd: dicorime
+    generic: Dictionnaire
+    icon: dicorime
+    name: Dictionnaire
+  - cmd: goldendict
+    generic: Multi-Dictionnaire
+    icon: goldendict
+    name: Multi-Dictionnaire
+  - cmd: libreoffice
+    generic: LibreOffice
+    icon: libreoffice-startcenter
+    name: LibreOffice
+  - cmd: libreoffice --writer
+    generic: !!python/str 'Écrire'
+    icon: libreoffice-writer
+    name: !!python/str 'Écrire'
+  - cmd: libreoffice --calc
+    generic: Tableaux
+    icon: libreoffice-calc
+    name: Tableaux
+  - cmd: libreoffice --draw
+    generic: Composition
+    icon: libreoffice-draw
+    name: Composition
+  - cmd: libreoffice --impress
+    generic: Diaporamas
+    icon: libreoffice-impress
+    name: Diaporamas
+  - cmd: osmo
+    generic: Agenda Personnel
+    icon: osmo
+    name: Agenda
+  - cmd: xournal
+    generic: Prise de notes manuscrites
+    icon: xournal
+    name: Journal
+  - cmd: tbo
+    generic: TBO
+    icon: tbo
+    name: TBO
+  id: 9
+  name: !!python/str 'Écriture'
+- apps:
+  - cmd: aller-maxi
+    generic: AbulEdu Aller
+    icon: abuledu-aller
+    name: AbulEdu Aller
+  id: 0
+  name: Lecture
+- apps:
+  - cmd: leterrier-calcul-mental
+    generic: Abuledu Calcul-Mental
+    icon: abuledu-calculs
+    name: Calcul-Mental
+  - cmd: mathoeuf-maxi
+    generic: AbulEdu Calcul Reflechi
+    icon: abuledu-calculreflechi
+    name: Calcul Reflechi
+  - cmd: calculs-maxi
+    generic: AbulEdu Calculs
+    icon: abuledu-calculs
+    name: Calculs
+  - cmd: operations-maxi
+    generic: Abuledu Operations
+    icon: abuledu-operations
+    name: Operations
+  - cmd: leterrier-suitearithmetique
+    generic: AbulEdu SuiteArithmetique
+    icon: leterrier-suitearithmetique
+    name: SuiteArithmetique
+  - cmd: suites-maxi
+    generic: AbulEdu Suites
+    icon: abuledu-suites
+    name: AbulEdu Suites
+  - cmd: leterrier-tierce
+    generic: AbulEdu Tierce
+    icon: /usr/share/icons/Faenza/apps/48/gnome-sudoku.png
+    name: AbulEdu Tierce
+  - cmd: qalculate-gtk
+    generic: Calculatrice
+    icon: accessories-calculator
+    name: Calculatrice
+  - cmd: leterrier-calculette-capricieuse
+    generic: Calculette capricieuse
+    icon: leterrier-calccap
+    name: Calculette capricieuse
+  - cmd: leterrier-fubuki
+    generic: Fubuki
+    icon: leterrier-fubuki
+    name: Fubuki
+  - cmd: leterrier-cibler
+    generic: Le Terrier Cible
+    icon: leterrier-cibler
+    name: Le Terrier Cible
+  - cmd: problemes-maxi
+    generic: !!python/str 'Problèmes'
+    icon: problemes
+    name: !!python/str 'Problèmes'
+  - cmd: tuxmath
+    generic: Tux Math
+    icon: tuxmath
+    name: Tux Math
+  - cmd: multiplication-station
+    generic: Multiplication Station
+    icon: multiplicationstation-0.8.0
+    name: Multiplication
+  id: 1
+  name: Calcul
+- apps:
+  - cmd: symcolor-maxi
+    generic: AbulEdu Symcolor
+    icon: abuledu-symcolor
+    name: AbulEdu Symcolor
+  - cmd: gtans
+    generic: Tangrams
+    icon: gtans
+    name: Tangrams
+  - cmd: /usr/share/Omega/comparaison-linux/comparaison
+    generic: Comparaison
+    icon: comparaison
+    name: Comparaison
+  - cmd: /usr/share/Omega/piles-linux/piles
+    generic: Piles
+    icon: /usr/share/icons/Faenza/actions/48/document-properties.png
+    name: Piles
+  - cmd: drgeo
+    generic: DrGeo
+    icon: drgeo
+    name: DrGEo
+  id: 4
+  name: !!python/str 'Géométrie'
+- apps:
+  - cmd: gcompris
+    generic: !!python/str 'Suite éducative GCompris'
+    icon: gcompris
+    name: GCompris
+  - cmd: /usr/bin/omnitux
+    generic: Omnitux
+    icon: omnitux
+    name: Omnitux
+  - cmd: /usr/bin/pysiogame
+    generic: pySioGame
+    icon: pysiogame
+    name: pySioGame
+  id: 3
+  name: Compilations
+- apps:
+  - cmd: firefox
+    generic: Firefox
+    icon: firefox
+    name: Internet
+  - cmd: scratch %f
+    generic: Scratch
+    icon: scratch
+    name: Scratch
+  - cmd: stellarium
+    generic: Stellarium
+    icon: stellarium
+    name: Stellarium
+  - cmd: /usr/bin/micro
+    generic: Microscope virtuel
+    icon: microscope
+    name: Microscope virtuel
+  id: 8
+  name: !!python/str 'Déc. du Monde'
+- apps:
+  - cmd: blobby
+    generic: Blobby Volley 2
+    icon: blobby
+    name: Blobby Volley 2
+  - cmd: frozen-bubble
+    generic: Frozen-Bubble
+    icon: frozen-bubble
+    name: Frozen-Bubble
+  - cmd: hannah
+    generic: Help Hannah's Horse
+    icon: hannah
+    name: Help Hannah's Horse
+  - cmd: monsterz
+    generic: Monsterz
+    icon: monsterz
+    name: Monsterz
+  - cmd: seahorse-adventures
+    generic: Seahorse Adventures
+    icon: seahorse-adventures
+    name: Seahorse Adventures
+  - cmd: supertux
+    generic: SuperTux
+    icon: supertux
+    name: SuperTux
+  - cmd: tuxpaint
+    generic: Tux Paint
+    icon: tuxpaint
+    name: Tux Paint
+  id: 5
+  name: Jeux

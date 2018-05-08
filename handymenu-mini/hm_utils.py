@@ -4,15 +4,16 @@
 
 import os
 from os.path import dirname, join
-import pickle
+import yaml
+import io
 import gettext
 
 # options for handymenu
 menuname = "HandyMenu"
-configfile=os.path.expanduser('/home/01-mini/.handymenu.conf')
+configfile=os.path.expanduser('/home/01-mini/.handymenu.yaml')
 if not os.path.isfile(configfile):
     # On est dans un cadre de DEBUG
-    configfile=os.path.expanduser(join(dirname(__file__), 'handymenu.conf'))
+    configfile=os.path.expanduser(join(dirname(__file__), 'handymenu.yaml'))
 noclose=os.path.expanduser('/home/01-mini/.handymenu-noclose.conf')
 hmdir="/usr/share/handymenu-mini"
 if not os.path.isfile(hmdir):
@@ -33,21 +34,21 @@ _ = gettext.gettext
 
 def set_default_config():
     print("reset configuration")
-    with open(configfile, 'wb') as pkl:
-        pickle.dump(hm_default_sections, pkl, pickle.HIGHEST_PROTOCOL)
+    with io.open(configfile, 'w', encoding='utf8') as pkl:
+        yaml.dump(hm_default_sections, pkl, default_flow_style=False, allow_unicode=True)
 
 def load_config():
-    with open(configfile, 'rb') as pkl:
+    with io.open(configfile, 'r') as stream:
         try:
-            config = pickle.load(pkl)
+            config = yaml.load(stream)
         except: #ancienne configuration ou config erronée?
             set_default_config()
             config = load_config()
         return(config)
 
 def save_config(conf):
-    with open(configfile, 'wb') as pkl:
-        pickle.dump(conf, pkl, pickle.HIGHEST_PROTOCOL)
+    with io.open(configfile, 'w', encoding='utf8') as outfile:
+        yaml.dump(conf, outfile, default_flow_style=False, allow_unicode=True)
 
 def add_section(config, section):
     config.append(section)
