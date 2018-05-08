@@ -3,14 +3,21 @@
 # utils for handymenu
 
 import os
+from os.path import dirname, join
 import pickle
 import gettext
 
 # options for handymenu
 menuname = "HandyMenu"
 configfile=os.path.expanduser('/home/02-super/.handymenu.conf')
+if not os.path.isfile(configfile):
+    # On est dans un cadre de DEBUG
+    configfile=os.path.expanduser(join(dirname(__file__), 'handymenu.conf'))
 noclose=os.path.expanduser('/home/02-super/.handymenu-noclose.conf')
 hmdir="/usr/share/handymenu-super"
+if not os.path.isfile(hmdir):
+    # On est dans un cadre de DEBUG
+    hmdir=dirname(__file__)
 pixmaps="/usr/share/pixmaps"
 configcmd="python {} &".format(os.path.join(hmdir,"handymenu-configuration.py")) 
 primtux_icons=os.path.join(pixmaps,hmdir,"icons")
