@@ -136,13 +136,22 @@ class Handymenu():
                     appname, icon, cmd, generic = a['name'], a['icon'], a['cmd'], a['generic']
                     # image utilisée dans le bouton
                     image = gtk.Image()
+                    image_exist = False
                     if icon.endswith('.png') or icon.endswith('.jpg'):
-                        pixbuf = gtk.gdk.pixbuf_new_from_file(icon)
-                        scaled_buf = pixbuf.scale_simple(iconsize,iconsize,gtk.gdk.INTERP_BILINEAR)
-                        image.set_from_pixbuf(scaled_buf)
+                        try:
+                            pixbuf = gtk.gdk.pixbuf_new_from_file(icon)
+                            scaled_buf = pixbuf.scale_simple(iconsize,iconsize,gtk.gdk.INTERP_BILINEAR)
+                            image.set_from_pixbuf(scaled_buf)
+                            image_exist = True
+                        except:
+                            pass
                     else:
                         image.set_from_icon_name(icon, gtk.ICON_SIZE_BUTTON)
                         image.set_pixel_size(iconsize)
+                        icon_theme = gtk.icon_theme_get_default()
+                        icon_info = icon_theme.lookup_icon(icon, gtk.ICON_SIZE_BUTTON, 0)
+                        if icon_info != None:
+                            image_exist = True
                     # nom de l'appli
                     bapp = gtk.Button(label=appname)
                     bapp.set_image(image)
@@ -150,10 +159,13 @@ class Handymenu():
                     bapp.set_image_position(gtk.POS_TOP)
                     # apparence du bouton
                     bapp.set_relief(gtk.RELIEF_NONE)
-                    bapp.connect("button_release_event", self.exec_app, a)
-                    bapp.connect("key_press_event", self.exec_app, a)
-                    # Le bouton survolé change de couleur
-                    bapp.modify_bg(gtk.STATE_PRELIGHT, gtk.gdk.color_parse("#41B1FF"))
+                    if image_exist:
+                        bapp.connect("button_release_event", self.exec_app, a)
+                        bapp.connect("key_press_event", self.exec_app, a)
+                        # Le bouton survolé change de couleur
+                        bapp.modify_bg(gtk.STATE_PRELIGHT, gtk.gdk.color_parse("#41B1FF"))
+                    else:
+                        pass
                     # Description du bouton
                     bulledesc = gtk.Tooltips()
                     bulledesc.set_tip(bapp, generic)
@@ -186,7 +198,7 @@ class Handymenu():
         if not self.closeafterrun: #on enregistre de ne pas fermer
             with open(noclose,'w') as n:
                 n.write('Thuban veut un câlin :P')
-        elif os.path.isfile(noclose): #on ferme la prochiane fois
+        elif os.path.isfile(noclose): #on ferme la prochaine fois
             os.remove(noclose)
             
     def make_menu(self):
@@ -269,7 +281,7 @@ class Handymenu():
         align.add(self.onglets)
         vbox.pack_start(align, True, True, 0)
 
-	# Boite d'en bas
+    # Boite d'en bas
         bottombox = gtk.HBox(True, 0)
         #bottombox.pack_start(logo, False, False, 0)
         #topbox.pack_start(linkbox, True, True, 0)
@@ -295,7 +307,7 @@ class Handymenu():
             self.config = load_config()
 
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
-#	self.window.maximize()
+#   self.window.maximize()
         self.window.connect("delete_event", lambda x,y: gtk.main_quit())
 
         self.window.set_title(menuname)
