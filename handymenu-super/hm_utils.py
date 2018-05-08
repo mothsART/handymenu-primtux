@@ -10,7 +10,7 @@ import gettext
 
 # options for handymenu
 menuname = "HandyMenu"
-configfile=os.path.expanduser('/home/02-super/.handymenu.yaml')
+configfile=os.path.expanduser('/usr/share/handyconfig-super/handymenu.yaml')
 if not os.path.isfile(configfile):
     # On est dans un cadre de DEBUG
     configfile=os.path.expanduser(join(dirname(__file__), 'handymenu.yaml'))
