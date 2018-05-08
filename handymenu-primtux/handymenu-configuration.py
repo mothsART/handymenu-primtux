@@ -215,6 +215,15 @@ class HandymenuConfig():
         nameframe.add(box)
         nameframe.show()
 
+        icon = app["icon"]
+        iconpreview = gtk.Image()
+        if icon.endswith('.png') or icon.endswith('.jpg'):
+            iconpreview.set_from_file(icon)
+        else:
+            iconpreview.set_from_icon_name(icon, iconsize)
+            iconpreview.set_pixel_size(iconsize)
+        iconpreview.show()
+
         # Changement de l'icône
         iconbtn = gtk.Button(label = _("Change icon"))
         iconbtn.connect_object("clicked", self.mod_app_icon_dialog, entry, None, d, section, app )
@@ -243,7 +252,6 @@ class HandymenuConfig():
 
         upbtn.show()
         downbtn.show()
-	
         # on met ça dans une boîte
         box = gtk.HBox(False,2)
         box.pack_start(upbtn, True, True, 3)
@@ -265,7 +273,12 @@ class HandymenuConfig():
 
         # ajout des objets au dialogue
         d.vbox.pack_start(nameframe)
-        d.vbox.pack_start(iconframe)
+        hbox = gtk.HBox(False, 2)
+        hbox.pack_start(iconpreview)
+        hbox.pack_start(iconframe)
+        hbox.show();
+        d.vbox.pack_start(hbox, True, True, 0)
+
         d.vbox.pack_start(moveframe)
         d.vbox.pack_start(delframe)
         d.run()
