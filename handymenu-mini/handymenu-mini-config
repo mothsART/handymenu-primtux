@@ -1,4 +1,4 @@
 #!/bin/bash
 
-python /usr/share/handymenu-mini/handymenu-configuration.py 
+python /usr/share/handymenu/handymenu-configuration.py mini
 

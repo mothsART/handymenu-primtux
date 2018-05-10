@@ -1,12 +1,12 @@
 #!/bin/bash
 if [ -z "$(ps axo comm |grep handymenu.py)" ]; then
-    cd "/usr/share/handymenu-maxi"
-    ./handymenu.py $@
+    cd "/usr/share/handymenu"
+    ./handymenu.py maxi
 else
     echo "Handy-menu est déjà lancé"
-    killall handymenu.py
-    cd "/usr/share/handymenu-maxi"
-    ./handymenu.py $@
+    killall handymenu-maxi.py
+    cd "/usr/share/handymenu"
+    ./handymenu.py maxi
 fi
 
 exit 0

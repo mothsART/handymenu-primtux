@@ -37,10 +37,6 @@ import gtk
 import gettext
 from hm_utils import *
 
-gettext.bindtextdomain('handymenu', '/usr/share/locale')
-gettext.textdomain('handymenu')
-_ = gettext.gettext
-
 class Handymenu():
     def close_application(self, widget, event, data=None):
         # tests nécessaires pour que seul clic-gauche et Entrée soient valables
@@ -52,22 +48,9 @@ class Handymenu():
                 gtk.main_quit()
 
     def configure(self, data=None):
-        os.system(configcmd)
+        os.system(self.utils.configcmd)
         gtk.main_quit()
 
-#   def about(self, wid=None, data=None):
-        # fenêtre à propos.
-#        m = gtk.MessageDialog(type=gtk.MESSAGE_INFO,\
-#           buttons = gtk.BUTTONS_OK)
-#        m.set_markup(_('<b>Handymenu-PrimTux</b>\n\n\
-#version : {0}\n\
-#author : {1}\n\
-#licence : {2}\n\
-#homepage : {3}').format(version, auteur, licence, homepage))
-#        ret = m.run()
-#        if ret == gtk.RESPONSE_DELETE_EVENT or ret == gtk.RESPONSE_OK:
-#            m.destroy()
-    
     def add_recent(self,app):
         """add a recent application
         appname, icon, cmd= app['name'], app['icon'], app['cmd']
@@ -100,15 +83,21 @@ class Handymenu():
                 gtk.main_quit()
 
     def create_tabs(self):
+        if self.config == None:
+            return
         self.n_onglets = len(self.config)
         for s in self.config:
             # Description du bouton
-            label = gtk.Label(s['name'])
+            label_str = ''
+            if 'name' in s:
+                label_str = s['name']
+            label = gtk.Label(label_str)
             label.set_width_chars(onglet_width) # pour avoir des onglets uniformes
             # onglet coloré
             label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse("#41B1FF"))
-
-            n = len(s['apps']) # number of apps to show
+            n = 0
+            if 'apps' in s and s['apps'] != None:
+                n = len(s['apps']) # number of apps to show
             if n <= 4: # si peu d'applications, 1 seule ligne
                 r = 1
             else:
@@ -184,7 +173,7 @@ class Handymenu():
                 align.add(page)
                 self.onglets.append_page(align, label)
             else:
-                desc = gtk.Label(_("This menu is still empty"))
+                desc = gtk.Label(self.utils._("This menu is still empty"))
                 align = gtk.Alignment(0.5, 0.5, 0, 0)
                 align.add(desc)
                 self.onglets.append_page(align, label)
@@ -196,10 +185,10 @@ class Handymenu():
     def close_after(self, widget):
         self.closeafterrun = widget.get_active()
         if not self.closeafterrun: #on enregistre de ne pas fermer
-            with open(noclose,'w') as n:
+            with open(self.noclose,'w') as n:
                 n.write('Thuban veut un câlin :P')
-        elif os.path.isfile(noclose): #on ferme la prochaine fois
-            os.remove(noclose)
+        elif os.path.isfile(self.noclose): #on ferme la prochaine fois
+            os.remove(self.noclose)
             
     def make_menu(self):
         """build the menu"""
@@ -213,12 +202,12 @@ class Handymenu():
 
         # Logo
         image = gtk.Image()
-        image.set_from_file(primtuxmenuicon)
+        image.set_from_file(self.utils.primtuxmenuicon)
         logo = gtk.EventBox()
         logo.add(image)
 #       logo.connect_object("button_release_event", self.about, None)
         bulledesc = gtk.Tooltips()
-        bulledesc.set_tip(logo, _("Thuban/HandyLinux-Tomasi/PrimTux"))
+        bulledesc.set_tip(logo, self.utils._("Thuban/HandyLinux-Tomasi/PrimTux"))
 
         # Titre
         title = gtk.Label()
@@ -240,30 +229,23 @@ class Handymenu():
         closebtn.connect("button_release_event", self.close_application)
         closebtn.connect("key_press_event", self.close_application)
         bulledesc = gtk.Tooltips()
-        bulledesc.set_tip(closebtn, _("Close"))
-
-       # fermer ou pas
-        closeafterbtn = gtk.CheckButton()
-        closeafterbtn.connect("toggled", self.close_after)
-        closeafterbtn.set_active(self.closeafterrun)
-        bulledesc = gtk.Tooltips()
-        bulledesc.set_tip(closeafterbtn, _("Close after execution"))
+        bulledesc.set_tip(closebtn, self.utils._("Close"))
 
         # configuration 
-       # qbtn = gtk.Button()
-       # image = gtk.Image()
-       # image.set_from_stock(gtk.STOCK_PREFERENCES, gtk.ICON_SIZE_MENU)
-       # qbtn.set_image(image)
-       # qbtn.set_relief(gtk.RELIEF_NONE)
-       # qbtn.connect_object("clicked", self.configure, None)
-       # bulledesc = gtk.Tooltips()
-       # bulledesc.set_tip(qbtn, _("Configure"))
+        qbtn = gtk.Button()
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_PREFERENCES, gtk.ICON_SIZE_MENU)
+        qbtn.set_image(image)
+        qbtn.set_relief(gtk.RELIEF_NONE)
+        qbtn.connect_object("clicked", self.configure, None)
+        bulledesc = gtk.Tooltips()
+        bulledesc.set_tip(qbtn, self.utils._("Configure"))
 
         # boite à boutons 
         btnbox = gtk.VBox(False,0)
         btnbox.pack_start(closebtn, True, True, 0)
-        # btnbox.pack_start(qbtn, True, True, 0)
-        btnbox.pack_start(closeafterbtn, True, True, 0)
+        btnbox.pack_start(qbtn, True, True, 0)
+        # btnbox.pack_start(closeafterbtn, True, True, 0)
 
         # Boite d'en haut
         topbox = gtk.HBox(False, 0)
@@ -293,26 +275,23 @@ class Handymenu():
 
         self.window.show_all()
 
-    def __init__(self):
-        if os.path.isfile(noclose):
-            self.closeafterrun = False
-        else:
-            self.closeafterrun = True
+    def __init__(self, appname):
+        self.utils = Utils(appname)
+        self.closeafterrun = False
         self.n_onglets = 0 # nombre d'onglets
         try:
-            self.config = load_config()
+            self.config = self.utils.load_config()
         except Exception as err:
             print(err)
-            set_default_config()
-            self.config = load_config()
+            self.config = self.utils.load_default_config()
 
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 #   self.window.maximize()
         self.window.connect("delete_event", lambda x,y: gtk.main_quit())
 
-        self.window.set_title(menuname)
+        self.window.set_title(self.utils.menuname)
         self.window.set_border_width(1) # pour avoir une bordure noire
-        self.window.set_icon_from_file(primtuxmenuicon)
+        self.window.set_icon_from_file(self.utils.primtuxmenuicon)
 
         self.window.set_position(gtk.WIN_POS_CENTER)
         self.window.set_resizable(False)
@@ -322,14 +301,9 @@ class Handymenu():
         self.make_menu()
         self.onglets.grab_focus() # pour la gestion au clavier facilitée
 
-def main():
-    os.chdir(os.getenv('HOME'))
-    menu = Handymenu()
+def main(appname):
+    menu = Handymenu(appname)
     gtk.main()
-    return 0        
-
-if __name__ == "__main__":
-    main()
-
+    return 0
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

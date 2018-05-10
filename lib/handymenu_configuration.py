@@ -17,10 +17,6 @@ import locale
 
 from hm_utils import *
 
-gettext.bindtextdomain('handymenu', '/usr/share/locale')
-gettext.textdomain('handymenu')
-_ = gettext.gettext
-
 def get_info_desktop(desktopfile):
     """return infos from a .desktop file"""
     name, cmd, icon, generic= "", "", "", ""
@@ -53,7 +49,7 @@ def get_info_desktop(desktopfile):
 
 class HandymenuConfig():
     def close_application(self, widget, event, data=None):
-        os.system("handymenu --force &")
+        os.system("{} --force &".format(join(self.utils.app_path, "handymenu-" + self.utils.appname)))
         gtk.main_quit()
         return False
 
@@ -62,7 +58,11 @@ class HandymenuConfig():
 
     def restart(self, widget=None, event=None):
         page = self.section_list.get_current_page()
-        self.config = load_config()
+        try:
+            self.config = load_config()
+        except Exception as err:
+            print(err)
+            self.config = load_default_config()
         self.window.destroy()
         self.make_menu()
         if page > len(self.config):
@@ -107,11 +107,11 @@ class HandymenuConfig():
         dialog.destroy()
 
     def mod_app_icon_dialog(self, widget, event, dialog, section, app):
-        chooser = gtk.FileChooserDialog(title=_("Choose an icon"),action=gtk.FILE_CHOOSER_ACTION_OPEN,\
+        chooser = gtk.FileChooserDialog(title=self.utils._("Choose an icon"),action=gtk.FILE_CHOOSER_ACTION_OPEN,\
                 buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
         chooser.set_current_folder(pixmaps)
         filter = gtk.FileFilter()
-        filter.set_name(_("Images"))
+        filter.set_name(self.utils._("Images"))
         filter.add_mime_type("image/png")
         filter.add_mime_type("image/jpeg")
         chooser.add_filter(filter)
@@ -119,7 +119,7 @@ class HandymenuConfig():
         response = chooser.run()
 
         if response == gtk.RESPONSE_CANCEL:
-            print(_('Closed, no files selected'))
+            print(self.utils._('Closed, no files selected'))
             chooser.destroy()
         elif response == gtk.RESPONSE_OK:
             i = chooser.get_filename()
@@ -176,10 +176,10 @@ class HandymenuConfig():
                   dnd_list, gtk.gdk.ACTION_COPY)
 
         w.connect("drag_data_received", self.on_drag_data_received, section)
-        l = gtk.Label(_("Drag an icon here to create a launcher"))
+        l = gtk.Label(self.utils._("Drag an icon here to create a launcher"))
         w.vbox.pack_start(l, True, True, 10)
 
-        appfinderbtn = gtk.Button(label=_("Search for applications"))
+        appfinderbtn = gtk.Button(label=self.utils._("Search for applications"))
         appfinderbtn.connect("button_press_event", self.appfinder)
         w.action_area.pack_start(appfinderbtn, True, True, 0)
         appfinderbtn.show()
@@ -194,13 +194,13 @@ class HandymenuConfig():
         dialog.destroy() # delete parent
 
     def edit_appli(self, widget, event, section, app):
-        d = gtk.Dialog(title=_("Edit the launcher"))
+        d = gtk.Dialog(title=self.utils._("Edit the launcher"))
         # Edition du nom de l'appli
         entry = gtk.Entry()
         entry.connect("activate", self.mod_app_name, entry, d, section, app) # entrée valide
         entry.show()
 
-        namebtn = gtk.Button(label = _("Change"))
+        namebtn = gtk.Button(label = self.utils._("Change"))
         namebtn.connect_object("clicked", self.mod_app_name, entry, None, d, section, app )
         namebtn.show()
 
@@ -211,7 +211,7 @@ class HandymenuConfig():
         box.show()
         
         # et le tout dans un étiquette
-        nameframe = gtk.Frame(_("Change the label"))
+        nameframe = gtk.Frame(self.utils._("Change the label"))
         nameframe.add(box)
         nameframe.show()
 
@@ -225,20 +225,20 @@ class HandymenuConfig():
         iconpreview.show()
 
         # Changement de l'icône
-        iconbtn = gtk.Button(label = _("Change icon"))
+        iconbtn = gtk.Button(label = self.utils._("Change icon"))
         iconbtn.connect_object("clicked", self.mod_app_icon_dialog, entry, None, d, section, app )
         iconbtn.show()
 
         # on met ça dans une boîte
         
         # et le tout dans un étiquette
-        iconframe = gtk.Frame(_("Change the application icon"))
+        iconframe = gtk.Frame(self.utils._("Change the application icon"))
         iconframe.add(iconbtn)
         iconframe.show()
 
         # déplacement de l'application
-        upbtn = gtk.Button(label=_("Move up"))
-        downbtn = gtk.Button(label=_("Move down"))
+        upbtn = gtk.Button(label=self.utils._("Move up"))
+        downbtn = gtk.Button(label=self.utils._("Move down"))
 
         upi = gtk.Image()
         upi.set_from_stock(gtk.STOCK_GO_UP, gtk.ICON_SIZE_MENU)
@@ -259,15 +259,15 @@ class HandymenuConfig():
         box.show()
         
         # et le tout dans un étiquette
-        moveframe = gtk.Frame(_("Move this app"))
+        moveframe = gtk.Frame(self.utils._("Move this app"))
         moveframe.add(box)
         moveframe.show()
 
         # Nécessaire pour la suppression
-        delbtn = gtk.Button(label = _("Delete"), stock=gtk.STOCK_DELETE)
+        delbtn = gtk.Button(label = self.utils._("Delete"), stock=gtk.STOCK_DELETE)
         delbtn.connect("clicked", self.del_appli, d, section, app)
         delbtn.show()
-        delframe = gtk.Frame(_("Delete this launcher"))
+        delframe = gtk.Frame(self.utils._("Delete this launcher"))
         delframe.add(delbtn)
         delframe.show()
 
@@ -282,7 +282,6 @@ class HandymenuConfig():
         d.vbox.pack_start(moveframe)
         d.vbox.pack_start(delframe)
         d.run()
-
 
     def make_entrylist(self):
         self.section_list = gtk.Notebook()
@@ -301,21 +300,21 @@ class HandymenuConfig():
             # boutons de config
             hb = gtk.HBox(False, 10)
 
-            delbtn = gtk.Button(label = _("Delete this section"))
+            delbtn = gtk.Button(label = self.utils._("Delete this section"))
             delbtn.connect_object("clicked", self.del_section, s)
 
-            addbtn = gtk.Button(label = _("Add an application"))
+            addbtn = gtk.Button(label = self.utils._("Add an application"))
             addbtn.connect_object("clicked", self.add_appli, s)
             
             hb.pack_start(addbtn)
             hb.pack_start(delbtn)
             
             if self.config.index(s) > 0:
-                upbtn = gtk.Button(label = _("Move section up"))
+                upbtn = gtk.Button(label = self.utils._("Move section up"))
                 upbtn.connect_object("clicked", self.move_sec, s, -1)
                 hb.pack_start(upbtn)
             if self.config.index(s) < len(self.config)-1:
-                downbtn = gtk.Button(label = _("Move section down"))
+                downbtn = gtk.Button(label = self.utils._("Move section down"))
                 downbtn.connect_object("clicked", self.move_sec, s, +1)
                 hb.pack_start(downbtn)
 
@@ -346,22 +345,22 @@ class HandymenuConfig():
 
         # ajout de la possibilité d'ajouter des sections
         addbox = gtk.VBox()
-        instruction = gtk.Label(_("Name of the new section: "))
+        instruction = gtk.Label(self.utils._("Name of the new section: "))
         entry = gtk.Entry()
         entry.connect("activate", self.add_new_section) # entrée valide
         addbox.pack_start(instruction, False, True, 3)
         addbox.pack_start(entry, False, False, 20)
 
-        addbtn = gtk.Button(label = _("More"), stock=gtk.STOCK_ADD)
+        addbtn = gtk.Button(label = self.utils._("More"), stock=gtk.STOCK_ADD)
         addbtn.connect_object("clicked", self.add_new_section, entry )
         addbox.pack_start(addbtn, False, False, 10)
 
         addlabel = gtk.Image()
-        pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(primtux_icons,"add_section.png"))
+        pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(self.utils.primtux_icons,"add_section.png"))
         scaled_buf = pixbuf.scale_simple(24,24,gtk.gdk.INTERP_BILINEAR)
         addlabel.set_from_pixbuf(scaled_buf)
         bulledesc = gtk.Tooltips()
-        bulledesc.set_tip(addlabel, _("Add a section"))
+        bulledesc.set_tip(addlabel, self.utils._("Add a section"))
         self.section_list.append_page(addbox, addlabel)
 
         self.mainbox.pack_start(self.section_list)
@@ -385,14 +384,14 @@ class HandymenuConfig():
         btnbox = gtk.HBox(True, 2)
         self.mainbox.pack_start(btnbox, False, False, 0)
 
-        defaultbtn = gtk.Button(label = _("Reset"))
+        defaultbtn = gtk.Button(label = self.utils._("Reset"))
         resetimg = gtk.Image()
         resetimg.set_from_stock(gtk.STOCK_REDO, gtk.ICON_SIZE_BUTTON)
         defaultbtn.set_image(resetimg)
         defaultbtn.connect_object("clicked", self.back_to_default, self.window )
         btnbox.pack_start(defaultbtn, fill= False)
 
-        savebtn = gtk.Button(label = _("Quit"), stock=gtk.STOCK_CLOSE)
+        savebtn = gtk.Button(label = self.utils._("Quit"), stock=gtk.STOCK_CLOSE)
         savebtn.connect_object("clicked", self.close_application, self.window, None )
         btnbox.pack_start(savebtn, fill= False)
 
@@ -400,17 +399,19 @@ class HandymenuConfig():
         self.window.set_default_size(620, 560)
         self.window.show_all()
 
-    def __init__(self):
-        self.config = load_config()
+    def __init__(self, appname):
+        self.appname = appname
+        self.utils = Utils(appname)
+        try:
+            self.config = self.utils.load_config()
+        except Exception as err:
+            print(err)
+            self.config = self.utils.load_default_config()
         self.make_menu()
 
-def main():
-    menu = HandymenuConfig()
+def main(appname):
+    menu = HandymenuConfig(appname)
     gtk.main()
     return 0        
-
-if __name__ == "__main__":
-    main()
-
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
